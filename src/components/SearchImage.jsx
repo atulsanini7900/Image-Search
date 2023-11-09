@@ -78,7 +78,7 @@ function SearchImage() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Flickr Image Search</h1>
+        <h1>Please Search Any Images </h1>
         <input
           type="text"
           placeholder="Search for photos..."
@@ -86,11 +86,7 @@ function SearchImage() {
           onChange={handleSearch}
         />
      
-        <ul className="suggestions">
-          {suggestions.map((query, index) => (
-            <li key={index} onClick={() => setSearchQuery(query)}>{query}</li>
-          ))}
-        </ul>
+        
         
       </header>
       <main>
