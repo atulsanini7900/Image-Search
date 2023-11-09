@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
-import Header from "./Header";
-import PhotoGrid from "./PhotoGrid";
 
 const apiKey = "71adb2d904c5ebb3e9e620d1884b67f0"; // Replace with your actual API key
 const apiUrlRecent = "https://www.flickr.com/services/rest/?method=flickr.photos.getRecent";
@@ -25,7 +23,7 @@ function SearchImage() {
     if (searchQuery) {
       fetchPhotos(searchQuery, page);
     }
-  },  [searchQuery, page, fetchPhotos]);
+  }, [searchQuery, page]);
 
   const fetchRecentPhotos = async () => {
     try {
@@ -79,18 +77,38 @@ function SearchImage() {
 
   return (
     <div className="App">
-      <Header
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        suggestions={suggestions}
-        handleSearch={handleSearch}
-        saveSearchQuery={saveSearchQuery}
-      />
+      <header className="App-header">
+        <h1>Flickr Image Search</h1>
+        <input
+          type="text"
+          placeholder="Search for photos..."
+          value={searchQuery}
+          onChange={handleSearch}
+        />
+     
+        <ul className="suggestions">
+          {suggestions.map((query, index) => (
+            <li key={index} onClick={() => setSearchQuery(query)}>{query}</li>
+          ))}
+        </ul>
+        
+      </header>
       <main>
-        <PhotoGrid photos={photos} loadMorePhotos={loadMorePhotos} />
+        <div className="photo-grid">
+          {photos.map((photo) => (
+            <img
+              key={photo.id}
+              src={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
+              alt={photo.title}
+            />
+          ))}
+        </div>
+        <button onClick={loadMorePhotos}>Load More</button>
       </main>
     </div>
   );
 }
 
 export default SearchImage;
+
+

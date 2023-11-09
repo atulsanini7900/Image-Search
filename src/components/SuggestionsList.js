@@ -1,5 +1,5 @@
 import React from "react";
-import SearchImage from "./SearchImage";
+
 function SuggestionsList({ suggestions, setSearchQuery }) {
   return (
     <ul className="suggestions">
