@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
 
-const apiKey = "71adb2d904c5ebb3e9e620d1884b67f0"; // Replace with your actual API key
+const apiKey = "71adb2d904c5ebb3e9e620d1884b67f0"; 
 const apiUrlRecent = "https://www.flickr.com/services/rest/?method=flickr.photos.getRecent";
 const apiUrlSearch = "https://www.flickr.com/services/rest/?method=flickr.photos.search";
 
@@ -12,14 +12,14 @@ function SearchImage() {
   const [suggestions, setSuggestions] = useState([]);
 
   useEffect(() => {
-    // Fetch recent photos when the component mounts
+    
     fetchRecentPhotos();
-    // Load saved search queries from local storage
+  
     loadSearchQueries();
   }, []);
 
   useEffect(() => {
-    // Fetch photos when the search query or page changes
+   
     if (searchQuery) {
       fetchPhotos(searchQuery, page);
     }
